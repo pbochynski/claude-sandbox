@@ -14,4 +14,4 @@ USER 1000
 # CHISEL_PORT: port to listen on (injected at runtime)
 # CHISEL_AUTH: user:password auth (injected at runtime)
 EXPOSE 8080
-CMD ["sh", "-c", "chisel server --port ${CHISEL_PORT:-8080} --auth ${CHISEL_AUTH:-demo:demo} --reverse"]
+CMD ["sh", "-c", "chisel server --host '[::]' --port ${CHISEL_PORT:-8080} --auth ${CHISEL_AUTH:-demo:demo} --reverse"]
