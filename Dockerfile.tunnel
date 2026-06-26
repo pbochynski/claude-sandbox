@@ -1,0 +1,14 @@
+FROM alpine:3.19
+
+ARG CHISEL_VERSION=1.11.5
+RUN wget -q "https://github.com/jpillora/chisel/releases/download/v${CHISEL_VERSION}/chisel_${CHISEL_VERSION}_linux_amd64.gz" \
+      -O /tmp/chisel.gz && \
+    gunzip /tmp/chisel.gz && \
+    mv /tmp/chisel /usr/local/bin/chisel && \
+    chmod +x /usr/local/bin/chisel
+
+# chisel server: single port, reverse tunnel mode
+# CHISEL_PORT: port to listen on (injected at runtime)
+# CHISEL_AUTH: user:password auth (injected at runtime)
+EXPOSE 8080
+CMD ["sh", "-c", "chisel server --port ${CHISEL_PORT:-8080} --auth ${CHISEL_AUTH:-demo:demo} --reverse"]
