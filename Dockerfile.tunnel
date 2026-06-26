@@ -5,7 +5,10 @@ RUN wget -q "https://github.com/jpillora/chisel/releases/download/v${CHISEL_VERS
       -O /tmp/chisel.gz && \
     gunzip /tmp/chisel.gz && \
     mv /tmp/chisel /usr/local/bin/chisel && \
-    chmod +x /usr/local/bin/chisel
+    chmod +x /usr/local/bin/chisel && \
+    adduser -D -u 1000 tunnel
+
+USER tunnel
 
 # chisel server: single port, reverse tunnel mode
 # CHISEL_PORT: port to listen on (injected at runtime)
