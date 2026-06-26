@@ -8,7 +8,7 @@ RUN wget -q "https://github.com/jpillora/chisel/releases/download/v${CHISEL_VERS
     chmod +x /usr/local/bin/chisel && \
     adduser -D -u 1000 tunnel
 
-USER tunnel
+USER 1000
 
 # chisel server: single port, reverse tunnel mode
 # CHISEL_PORT: port to listen on (injected at runtime)
